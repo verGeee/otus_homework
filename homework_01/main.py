@@ -11,12 +11,7 @@ def power_numbers(*numbers, power=2):
     >>> power_numbers(1, 2, 5, 7)
     <<< [1, 4, 25, 49]
     """
-    result = []
-    for number in numbers:
-        result.append(number ** power)
-    return result
-
-#print(power_numbers(2,3,4))
+    return [num ** power for num in numbers]
 
 # filter types
 ODD = "odd"
@@ -25,18 +20,17 @@ PRIME = "prime"
 
 def is_prime(numbers):
     result = []
-    for num in numbers:
-        if num > 1:
-            for n in range(2, num):
-                if num % n == 0:
-                    break
-            else:
-                result.append(num)
+    if numbers > 1:
+        for n in range(2, numbers):
+            if numbers % n == 0:
+                break
+        else:
+            result.append(numbers)
     return (result)
 
 input_data = [0,1,2,3,4,5,6,7,8,9,10,11]
 
-def filter_numbers(numbers, filter):
+def filter_numbers(numbers, filter_type):
     """
     функция, которая на вход принимает список из целых чисел,
     и возвращает только чётные/нечётные/простые числа
@@ -47,12 +41,9 @@ def filter_numbers(numbers, filter):
     >>> filter_numbers([2, 3, 4, 5], EVEN)
     <<< [2, 4]
     """
-    if filter == "odd":
-        result = [num for num in numbers if num % 2 != 0]
-    elif filter == "even":
-        result = [num for num in numbers if num % 2 == 0]
-    elif filter == "prime":
-        result = is_prime(numbers)
-    return(result)
-
-print(filter_numbers([0,1,2,3,4,5,6,7,8,9,10,11], PRIME))
+    if filter_type == "odd":
+        return [num for num in numbers if num % 2 != 0]
+    elif filter_type == "even":
+        return [num for num in numbers if num % 2 == 0]
+    elif filter_type == "prime":
+        return list(filter(is_prime, numbers))
