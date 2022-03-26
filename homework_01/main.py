@@ -13,7 +13,7 @@ def power_numbers(*numbers, power=2):
     """
     return [num ** power for num in numbers]
 
-# filter types
+# filter typess
 ODD = "odd"
 EVEN = "even"
 PRIME = "prime"
