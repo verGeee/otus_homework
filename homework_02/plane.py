@@ -5,7 +5,7 @@
 from homework_02 import base
 from homework_02 import exceptions
 
-class Plane(Vehicle):
+class Plane(base.Vehicle):
 
     def __init__(self, weight = 1500, fuel = 100, fuel_consumption = 10, max_cargo = 100):
         super().__init__(weight, fuel, fuel_consumption)
