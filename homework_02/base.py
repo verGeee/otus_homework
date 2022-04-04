@@ -1,7 +1,5 @@
 from abc import ABC
-
 import homework_02
-
 
 class Vehicle(ABC):
 
@@ -19,7 +17,7 @@ class Vehicle(ABC):
 
     def move(self, distance):
         fuel_consumption_calc = self.fuel_consumption * distance
-        if self.fuel > fuel_consumption_calc:
+        if self.fuel >= fuel_consumption_calc:
             self.fuel = self.fuel - fuel_consumption_calc
         else:
             raise homework_02.exceptions.NotEnoughFuel
