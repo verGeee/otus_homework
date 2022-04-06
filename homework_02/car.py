@@ -9,4 +9,4 @@ class Car(base.Vehicle):
         self.engine = None
 
     def set_engine(self, class_engine: object):
-        self.engine = class_engine1
+        self.engine = class_engine
