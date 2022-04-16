@@ -1,9 +1,9 @@
 from abc import ABC
 import homework_02
 
-class Vehicle(ABC):
 
-    def __init__(self, weight = 1500, fuel = 100, fuel_consumption = 10):
+class Vehicle(ABC):
+    def __init__(self, weight=1500, fuel=100, fuel_consumption=10):
         self.weight = weight
         self.started = False
         self.fuel = fuel
