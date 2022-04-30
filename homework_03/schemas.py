@@ -11,7 +11,7 @@ class UserIn(UserBase):
 
 class UserOut(UserBase):
     id: int
-
+    created_at: str
 
 class User(UserOut):
     # token: str
