@@ -14,5 +14,4 @@ class UserOut(UserBase):
     created_at: str
 
 class User(UserOut):
-    # token: str
     pass
