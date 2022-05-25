@@ -22,8 +22,8 @@ async def get_user_data():
 async def post_user_data():
     async with aiohttp.ClientSession() as session:
         async with session.post(POSTS_DATA_URL) as resp:
-            print(await resp.json())
+            return await resp.json()
 
 
 if __name__ == "__main__":
-    asyncio.run(get_user_data())
+    pass
