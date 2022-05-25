@@ -14,6 +14,6 @@ async def root():
     return {"msg": "homework_03"}
 
 
-@app.get("/ping")
+@app.get("/ping/")
 async def ping():
     return {"message": "pong"}
