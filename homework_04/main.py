@@ -17,6 +17,9 @@ from .models import create_table, create_user, create_post
 from .jsonplaceholder_requests import get_data
 
 
+
+
+
 async def async_main():
     ### Get data for uploading
     data: dict = await get_data()
