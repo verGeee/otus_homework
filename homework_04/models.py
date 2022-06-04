@@ -15,12 +15,19 @@ from sqlalchemy import (
     Column,
     Integer,
     String,
+    ForeignKey,
 )
 from sqlalchemy.orm import (
     declarative_base,
     sessionmaker,
     scoped_session,
     Session as SessionType,
+    relationship,
+)
+
+from sqlalchemy.ext.asyncio import (
+    create_async_engine,
+    AsyncSession,
 )
 
 # PG_CONN_URI = (
@@ -29,15 +36,24 @@ from sqlalchemy.orm import (
 # )
 
 
-PG_CONN_URI = "postgresql+pg8000://hw4:hw4@localhost:5432/hw4"
+PG_CONN_URI = "postgresql+asyncpg://hw4:hw4@localhost:5432/hw4"
 
-engine = create_engine(url=PG_CONN_URI)
-session_factory = sessionmaker(bind=engine)
+engine = create_async_engine(url=PG_CONN_URI)
+session_factory = sessionmaker(
+    engine, expire_on_commit=False, class_=AsyncSession
+)
 Session = scoped_session(session_factory)
+session: AsyncSession = Session()
+
+async def create_engine():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
+        await conn.run_sync(Base.metadata.create_all)
 
 
 class Base:
     id = Column(Integer, primary_key=True)
+
     def __str__(self):
         return (
             f"id={self.id}, "
@@ -58,40 +74,39 @@ class User(Base):
     name = Column("name", String)
     username = Column("username", String, unique=True)
     email = Column("email", String, unique=True)
+    post_rlt = relationship("Post", back_populates="user_rlt")
+
 
 class Post(Base):
     __tablename__ = "Post"
-    user_id = Column("user_id", Integer, unique=True)
+    user_id = Column("user_id", Integer, ForeignKey("User.id"))
     title = Column("title", String)
     body = Column("body", String)
+    user_rlt = relationship("User", back_populates="post_rlt")
 
 
 def create_table():
     Base.metadata.create_all()
 
-# def get_users(session: SessionType) -> list[User]:
-#     users = session.query(User).all()
-#     print("users:", users)
-#     return users
+async def create_user(name: str, username: str, email: str) -> User:
+    session: AsyncSession = create_session()
+    username = User(username=username, name=name, email=email)
+    session.add(username)
+    await session.commit()
+    await session.refresh(username)
+    return user
+
+async def create_post(user_id: int, title: str, body: str) -> Post:
+    session = create_session()
+    post = Post(user_id=user_id, title=title, body=body)
+    session.add(post)
+    await session.commit()
+    await session.refresh(username)
+    return post
 
 
-# def create_user(session: SessionType, username: str, name: str, email: str) -> User:
-#     username = User(username=username, name=name, email=email)
-#     session.add(username)
-#     session.commit()
-#     return username
 
 
-# def change_user(session: SessionType, user: User) -> User:
-#     user.email = "new_email"
-#     session.commit()
-#     return user
-
-session: SessionType = Session()
-# create_table()
-# get_users(session)
-# create_user(session, username="vergee", name="pash", email="verge@email.com")
-# change_user(session, username='test', name='test_name', email='test_email')
-session.close()
-
-
+async def create_session() -> AsyncSession:
+    async with session_factory() as session:
+        return session
