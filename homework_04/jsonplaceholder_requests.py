@@ -59,7 +59,7 @@ async def get_data() -> dict:
     data = {"users": {}, "posts": {}}
     tasks = {asyncio.create_task(fetch_json(url)) for url in USERS_DATA_URL}
     coro = asyncio.wait(tasks)
-    done, pending = await coro
+    done, __ = await coro
     for task in done:
         data_dict = task.result()
         if data_dict[-1] == "users":
