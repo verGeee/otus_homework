@@ -88,7 +88,7 @@ def create_table():
 #     return user
 
 session: SessionType = Session()
-create_table()
+# create_table()
 # get_users(session)
 # create_user(session, username="vergee", name="pash", email="verge@email.com")
 # change_user(session, username='test', name='test_name', email='test_email')

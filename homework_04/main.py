@@ -13,13 +13,14 @@
 - закрытие соединения с БД
 """
 
+from models import create_table
 
 async def async_main():
     pass
 
 
 def main():
-    pass
+    # create_table()
 
 
 if __name__ == "__main__":
