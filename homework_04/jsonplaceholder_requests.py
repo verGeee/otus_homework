@@ -52,23 +52,18 @@ async def fetch_json(service: Services) -> dict:
     async with aiohttp.ClientSession() as session:
         async with session.get(service.url) as resp:
             data: dict = await resp.json()
-            if service.name == 'users':
-                return (data[0].get(service.field_name))
-            elif service.name == 'posts':
-                pass
-            return data
+            return (data, service.name)
 
 
-# async def get_data() -> dict:
-#     data_dict = {}
-#     tasks = {asyncio.create_task(fetch_json(url)) for url in USERS_DATA_URL}
-#     coro = asyncio.wait(tasks)
-#     done, pending = await coro
-#
-#     for task in done:
-#         data_dict = task.result()
-#         # print(data_dict)
-
-
-data = asyncio.run(fetch_json(USERS_DATA_URL[0]))
-print(data)
+async def get_data() -> dict:
+    data = {"users": {}, "posts": {}}
+    tasks = {asyncio.create_task(fetch_json(url)) for url in USERS_DATA_URL}
+    coro = asyncio.wait(tasks)
+    done, pending = await coro
+    for task in done:
+        data_dict = task.result()
+        if data_dict[-1] == "users":
+            data["users"] = data_dict[0]
+        elif data_dict[-1] == "posts":
+            data["posts"] = data_dict[0]
+    return data
