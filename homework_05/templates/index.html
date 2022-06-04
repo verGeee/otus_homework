@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    Pages:
+        <ul>
+            {% for page_name in pages %}
+            <li>
+                {{ page_name }}
+            </li>
+            {% endfor %}
+        </ul>
+{% endblock %}
+
+{% block title %}
+    Home
+{% endblock %}
