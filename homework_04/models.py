@@ -94,7 +94,7 @@ async def create_user(name: str, username: str, email: str) -> User:
     session.add(username)
     await session.commit()
     await session.refresh(username)
-    return user
+    return username
 
 async def create_post(user_id: int, title: str, body: str) -> Post:
     session = create_session()
