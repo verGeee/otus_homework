@@ -101,7 +101,7 @@ async def create_post(user_id: int, title: str, body: str) -> Post:
     post = Post(user_id=user_id, title=title, body=body)
     session.add(post)
     await session.commit()
-    await session.refresh(username)
+    await session.refresh(post)
     return post
 
 
