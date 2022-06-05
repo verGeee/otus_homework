@@ -3,14 +3,19 @@
 {% block body %}
     Pages:
         <ul>
+
             {% for page_name in pages %}
             <li>
-                {{ page_name }}
+                <a href="{{ url_for(
+                'details', page_name=page_name) }}">
+                    {{ page_name }}
+                </a>
             </li>
             {% endfor %}
+
         </ul>
 {% endblock %}
 
 {% block title %}
-    Home
+Home
 {% endblock %}

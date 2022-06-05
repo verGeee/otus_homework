@@ -19,31 +19,20 @@ from flask import (
 app = Flask(__name__)
 app.config.update(ENV="development")
 
-pages_dict = {1: "Smth_else", 2: "About"}
+pages_list = ["smth_else", "about"]
 
 
-@app.route("/")
+@app.route("/", endpoint="index")
 def get_pages():
     return render_template(
         "index.html",
-        pages=list(pages_dict.items()),
+        pages=pages_list,
     )
 
 
-@app.get("/<int:page_id>/")
-def get_page_id(page_id: int):
-    page_name = pages_dict[page_id]
+@app.get("/<string:page_name>/", endpoint="details")
+def get_page_name(page_name: str):
     return render_template("details.html", page_name=page_name)
-
-
-# @app.route("/about/")
-# def about():
-#     return render_template("about.html")
-#
-#
-# @app.route("/smth_else/")
-# def smth_else():
-#     return render_template("smth_else.html")
 
 
 app.run(debug=True)

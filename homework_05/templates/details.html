@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Page {{ page_name }}
+    {{ page_name }}
 {% endblock %}
 
 {% block body %}
-    {{ page_name }}
+    <h1>{{ page_name }}</h1>
+    <br>
+    <br>
+        <a href="{{ url_for(
+        'index', page_name=page_name) }}">
+        Back to home
+            </a>
 {% endblock %}
