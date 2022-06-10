@@ -13,6 +13,7 @@
 - закрытие соединения с БД
 """
 import asyncio, json
+import asyncpg
 from models import create_table, create_user, create_post
 from jsonplaceholder_requests import get_users_data, get_posts_data
 
