@@ -25,6 +25,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
     AsyncSession,
 )
+import asyncpg
 
 PG_CONN_URI = (
     os.environ.get("SQLALCHEMY_PG_CONN_URI")
