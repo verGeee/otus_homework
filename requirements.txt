@@ -3,6 +3,7 @@ aiosignal==1.2.0
 anyio==3.6.1
 async-timeout==4.0.2
 asyncio==3.4.3
+asyncpg==0.25.0
 attrs==21.4.0
 charset-normalizer==2.0.12
 Faker==13.12.0
