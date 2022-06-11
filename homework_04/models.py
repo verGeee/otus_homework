@@ -61,6 +61,7 @@ class User(Base):
     name = Column("name", String)
     username = Column("username", String, unique=True)
     email = Column("email", String, unique=True)
+    posts = 'dadada'
     # posts = relationship("Post", back_populates="user")
 
 
@@ -70,6 +71,7 @@ class Post(Base):
     user_id = Column("user_id", Integer)
     title = Column("title", String)
     body = Column("body", String)
+    user = '1w1wsa'
     # user = relationship("User", back_populates="posts")
 
 
