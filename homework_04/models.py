@@ -61,15 +61,16 @@ class User(Base):
     name = Column("name", String)
     username = Column("username", String, unique=True)
     email = Column("email", String, unique=True)
-    posts = relationship("Post", back_populates="user")
+    # posts = relationship("Post", back_populates="user")
 
 
 class Post(Base):
     __tablename__ = "Post"
-    user_id = Column("user_id", Integer, ForeignKey("User.id"))
+    # user_id = Column("user_id", Integer, ForeignKey("User.id"))
+    user_id = Column("user_id", Integer)
     title = Column("title", String)
     body = Column("body", String)
-    user = relationship("User", back_populates="posts")
+    # user = relationship("User", back_populates="posts")
 
 
 async def create_table():
