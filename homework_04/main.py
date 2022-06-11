@@ -12,25 +12,27 @@
   (используйте полученные из запроса данные, передайте их в функцию для добавления в БД)
 - закрытие соединения с БД
 """
-import asyncio, json
-import asyncpg
-from models import create_table, create_user, create_post
+import asyncio
+from models import create_table, create_user, create_posts_for_user
 from jsonplaceholder_requests import get_users_data, get_posts_data
 
 
 
 async def async_main():
+    await create_table()
     users_data, posts_data = await asyncio.gather(
         get_users_data(),
         get_posts_data(),
     )
     for users in users_data:
         await create_user(username=users['username'], name=users['name'], email=users['email'])
+    # for posts in posts_data:
+    #     await create_post(user_id=posts['userId'], title=posts['title'], body=posts['body'])
     for posts in posts_data:
-        await create_post(user_id=posts['userId'], title=posts['title'], body=posts['body'])
+        await create_posts_for_user(user_id=posts['userId'], title=posts['title'], body=posts['body'])
+
 
 def main():
-    # create_table()
     asyncio.run(async_main())
 
 

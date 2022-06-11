@@ -5,8 +5,8 @@ services:
     image: postgres
     environment:
       POSTGRES_DB: hw4
-      POSTGRES_USER: hw4
-      POSTGRES_PASSWORD: hw4
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
       PGDATA: /mnt/f/dev/py/venv/otus/homework_04/db
     volumes:
       - hw4-pg-data:/mnt/f/dev/py/venv/otus/homework_04/db

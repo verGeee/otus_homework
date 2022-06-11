@@ -2,7 +2,6 @@
 создайте асинхронные функции для выполнения запросов к ресурсам (используйте aiohttp)
 """
 import asyncio, aiohttp, json
-import asyncpg
 # from dataclasses import dataclass
 
 import platform
