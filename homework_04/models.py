@@ -8,7 +8,7 @@
 создайте связи relationship между моделями: User.posts и Post.user
 """
 
-import os
+import os, asyncpg
 from sqlalchemy import (
     Column,
     Integer,
@@ -25,34 +25,17 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
     AsyncSession,
 )
-import asyncpg
 
 PG_CONN_URI = (
     os.environ.get("SQLALCHEMY_PG_CONN_URI")
     or "postgresql+asyncpg://postgres:password@localhost/postgres"
 )
 
-# PG_CONN_URI = (
-#     os.environ.get("SQLALCHEMY_PG_CONN_URI")
-#     or "postgresql+asyncpg://hw4:hw4@localhost:5432/postgres"
-# )
-
-
-
-# PG_CONN_URI = "postgresql+asyncpg://hw4:hw4@localhost:5432/hw4"
 
 async_engine = create_async_engine(url=PG_CONN_URI)
 Session: AsyncSession = sessionmaker(
     async_engine, expire_on_commit=False, class_=AsyncSession
 )
-
-# Session = scoped_session(async_session)
-# session: AsyncSession = Session()
-
-# async def create_engine():
-#     async with engine.begin() as conn:
-#         await conn.run_sync(Base.metadata.drop_all)
-#         await conn.run_sync(Base.metadata.create_all)
 
 
 class Base:
@@ -94,6 +77,7 @@ async def create_table():
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 
+
 async def create_user(name: str, username: str, email: str) -> User:
     async with Session() as session:
         username = User(username=username, name=name, email=email)
@@ -102,23 +86,11 @@ async def create_user(name: str, username: str, email: str) -> User:
         await session.refresh(username)
     return username
 
-# async def create_post(user_id: int, title: str, body: str) -> Post:
-#     async with Session() as session:
-#         post = Post(user_id=user_id, title=title, body=body)
-#         session.add(post)
-#         await session.commit()
-#         await session.refresh(post)
-#     return post
 
 async def create_posts_for_user(user_id: int, title: str, body: str) -> Post:
     async with Session() as session:
-        post = Post(user_id = user_id, title=title, body=body)
+        post = Post(user_id=user_id, title=title, body=body)
         session.add(post)
         await session.commit()
         await session.refresh(post)
     return post
-
-
-# async def create_session() -> AsyncSession:
-#     async with session_factory() as session:
-#         return session
