@@ -6,4 +6,10 @@
 
 {% block body %}
     This web is running on Flask
+    <br>
+    <br>
+        <a href="{{ url_for(
+        'index', page_name=page_name) }}">
+        Back to home
+            </a>
 {% endblock %}

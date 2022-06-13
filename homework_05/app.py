@@ -19,7 +19,7 @@ from flask import (
 app = Flask(__name__)
 app.config.update(ENV="development")
 
-pages_list = ["smth_else", "about"]
+pages_list = ["about"]
 
 
 @app.route("/", endpoint="index")
@@ -30,9 +30,13 @@ def get_pages():
     )
 
 
-@app.get("/<string:page_name>/", endpoint="details")
-def get_page_name(page_name: str):
-    return render_template("details.html", page_name=page_name)
+# @app.get("/<string:page_name>/", endpoint="details")
+# def get_page_name(page_name: str):
+#     return render_template("details.html", page_name=page_name)
+@app.route("/about/", endpoint="about")
+def get_page_name():
+    return render_template("about.html")
 
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
