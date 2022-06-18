@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  pg:
+    image: postgres
+    environment:
+      POSTGRES_DB: shop
+      POSTGRES_USER: shop
+      POSTGRES_PASSWORD: shop
+      PGDATA: /mnt/f/dev/py/venv/
+    volumes:
+      - shop-pg-data:/mnt/f/dev/py/venv/
+    ports:
+      - "5432:5432"
+
+volumes:
+  shop-pg-data:
