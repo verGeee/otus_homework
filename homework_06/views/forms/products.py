@@ -8,6 +8,6 @@ class ProductForm(FlaskForm):
         name='product-name',
         validators=[
             DataRequired(),
-            Length(min=3, max=100),
+            Length(min=3, max=200),
         ]
     )

@@ -1,3 +1,5 @@
+from os import getenv
+
 from flask import Flask, render_template
 from views.products import products_app, get_products_on_home
 from models.database import db
@@ -5,12 +7,8 @@ from flask_migrate import Migrate
 
 
 app = Flask(__name__)
-app.config.update(
-    ENV="development",
-    SECRET_KEY="dadadadad",
-    SQLALCHEMY_TRACK_MODIFICATIONS=False,
-    SQLALCHEMY_DATABASE_URI="postgresql+pg8000://shop:shop@localhost:5432/shop",
-)
+config_name = "config.%s" % getenv("CONFIG", "DevelopmentConfig")
+app.config.from_object(config_name)
 
 app.register_blueprint(products_app, url_prefix="/products")
 db.init_app(app)
