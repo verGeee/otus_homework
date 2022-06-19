@@ -7,10 +7,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="{{ url_for(
-        'home', page_name=page_name) }}">
-        Home
+          {% for page_name, page_url in page_dict  %}
+          <a class="nav-link active" aria-current="page" href="{{ url_for(
+        page_url) }}">
+              {{page_name}}
             </a>
+          {% endfor  %}
       </div>
     </div>
   </div>

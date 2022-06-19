@@ -13,6 +13,12 @@ log = logging.getLogger(__name__)
 
 products_app = Blueprint("shop", __name__)
 
+page_dict = {
+    "Home": "home",
+    "All products": "shop.list",
+    "Add product": "shop.add",
+}
+
 
 def get_products_on_home():
     return Product.query.all()
@@ -21,7 +27,9 @@ def get_products_on_home():
 @products_app.get("/", endpoint="list")
 def get_products_list():
     products = Product.query.all()
-    return render_template("products/list.html", products=products)
+    return render_template(
+        "products/list.html", products=products, page_dict=page_dict.items()
+    )
 
 
 @products_app.route("/<int:product_id>/", methods=["GET", "DELETE"], endpoint="details")
@@ -30,7 +38,9 @@ def get_product_id(product_id: int):
     if product is None:
         raise BadRequest("Wrong product ID")
     if request.method == "GET":
-        return render_template("products/details.html", product=product)
+        return render_template(
+            "products/details.html", product=product, page_dict=page_dict.items()
+        )
 
     product_name = product.name
     db.session.delete(product)
@@ -48,13 +58,21 @@ def add_product():
 
     if request.method == "GET":
         return render_template(
-            "products/add.html", form=form, price=price, description=description
+            "products/add.html",
+            form=form,
+            price=price,
+            description=description,
+            page_dict=page_dict.items(),
         )
 
     if not form.validate_on_submit():
         return (
             render_template(
-                "products/add.html", form=form, price=pricem, description=description
+                "products/add.html",
+                form=form,
+                price=price,
+                description=description,
+                page_dict=page_dict.items(),
             ),
             400,
         )
