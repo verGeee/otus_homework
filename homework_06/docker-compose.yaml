@@ -4,7 +4,7 @@ services:
   shop:
     build:
       context: .
-      dockerfile: ./docker-build/shop/Dockerfile
+      dockerfile: ./docker-build/Dockerfile
     environment:
       CONFIG: ProductionConfig
       SQLALCHEMY_DATABASE_URI: postgresql+pg8000://shop:shop@pg:5432/shop
