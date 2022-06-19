@@ -13,14 +13,4 @@ function deleteItem() {
 }
 
 window.onload = function () {
-  const buttonDelete = document.getElementById('delete-product');
-  buttonDelete.addEventListener('click', function () {
-    console.log('button clicked!')
-    if (confirm('Delete item?')) {
-      console.log('delete.')
-      deleteItem();
-    } else {
-      console.log('dont.ok')
-    }
-  })
 }

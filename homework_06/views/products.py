@@ -36,7 +36,7 @@ def get_product_id(product_id: int):
     db.session.delete(product)
     db.session.commit()
     flash(f"{product.name} was deleted", "warning")
-    url = url_for("products_app.list")
+    url = url_for("shop.list")
     return {"ok": True, "url": url}
 
 
