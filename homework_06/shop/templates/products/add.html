@@ -16,6 +16,20 @@
                 {% endfor %}
             </ul>
         {% endif %}
+        <br>
+        <br>
+        {{ price.hidden_tag() }}
+        {{ price.name.label }}
+        {{ price.name(size=20) }}
+        {% if price.name.errors %}
+            <ul class="errors">
+                {% for error in price.name.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
+        <br>
         <button type="submit">Create</button>
     </form>
     <br>

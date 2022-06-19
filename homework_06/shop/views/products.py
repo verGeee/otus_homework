@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 
 from werkzeug.exceptions import BadRequest, InternalServerError
 
-from .forms.products import ProductForm
+from .forms.products import ProductForm, PriceForm
 from models import Product
 from models.database import db
 
@@ -43,15 +43,20 @@ def get_product_id(product_id: int):
 @products_app.route("/add/", methods=["GET", "POST"], endpoint="add")
 def add_product():
     form = ProductForm()
+    price = PriceForm()
+    print(vars(form))
+    print(vars(price))
+
     if request.method == "GET":
-        return render_template("products/add.html", form=form)
+        return render_template("products/add.html", form=form, price=price)
 
     if not form.validate_on_submit():
-        return render_template("products/add.html", form=form), 400
+        return render_template("products/add.html", form=form, price=price), 400
 
     product_name = form.name.data
+    product_price = price.name.data
 
-    product = Product(name=product_name)
+    product = Product(name=product_name, price=product_price)
     db.session.add(product)
     try:
         db.session.commit()

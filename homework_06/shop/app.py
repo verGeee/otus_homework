@@ -15,8 +15,6 @@ db.init_app(app)
 migrate = Migrate(app, db, compare_type=True)
 
 
-
-
 @app.route("/", endpoint="home")
 def home_page():
     return render_template("home.html", products=get_products_on_home())
