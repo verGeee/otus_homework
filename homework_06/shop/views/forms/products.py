@@ -33,3 +33,29 @@ class DescriptionForm(FlaskForm):
             Length(min=3, max=500),
         ],
     )
+
+class ChangeProductForm(FlaskForm):
+    name = StringField(
+        label="Product Name",
+        name="product-name",
+        validators=[
+            Length(min=3, max=200),
+        ],
+    )
+
+
+class ChangePriceForm(FlaskForm):
+    name = IntegerField(
+        label="Product Price",
+        name="product-price",
+    )
+
+
+class ChangeDescriptionForm(FlaskForm):
+    name = StringField(
+        label="Description",
+        name="product-desc",
+        validators=[
+            Length(min=3, max=500),
+        ],
+    )
