@@ -28,6 +28,18 @@
                 {% endfor %}
             </ul>
         {% endif %}
+                <br>
+        <br>
+        {{ description.hidden_tag() }}
+        {{ description.name.label }}
+        {{ description.name(size=200) }}
+        {% if description.name.errors %}
+            <ul class="errors">
+                {% for error in description.name.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         <br>
         <br>
         <button type="submit">Create</button>

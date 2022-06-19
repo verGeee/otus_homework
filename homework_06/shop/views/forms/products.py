@@ -13,11 +13,23 @@ class ProductForm(FlaskForm):
         ],
     )
 
+
 class PriceForm(FlaskForm):
     name = IntegerField(
         label="Product Price",
         name="product-price",
         validators=[
             DataRequired(),
+        ],
+    )
+
+
+class DescriptionForm(FlaskForm):
+    name = StringField(
+        label="Description",
+        name="product-desc",
+        validators=[
+            DataRequired(),
+            Length(min=3, max=500),
         ],
     )
