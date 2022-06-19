@@ -44,8 +44,6 @@ def get_product_id(product_id: int):
 def add_product():
     form = ProductForm()
     price = PriceForm()
-    print(vars(form))
-    print(vars(price))
 
     if request.method == "GET":
         return render_template("products/add.html", form=form, price=price)

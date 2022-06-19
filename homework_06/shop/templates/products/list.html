@@ -6,17 +6,29 @@
 
 
 {% block body %}
-    Products:
-    <ul class="list-group">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                </tr>
+            </thead>
+        <tbody>
         {% for product in products  %}
-        <li class="list-group-item">
+            <tr>
+                <td>
             <a href="{{ url_for(
             'shop.details', product_id=product.id) }}">
                 {{product.name}}
             </a>
-        </li>
+                </td>
+                 <td>
+                {{product.price}}
+                </td>
         {% endfor  %}
-    </ul>
+            </tr>
+        </tbody>
+        </table>
     <br>
     <br>
     <div>
