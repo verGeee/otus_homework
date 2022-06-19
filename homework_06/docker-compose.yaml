@@ -1,19 +1,18 @@
 version: "3"
 
 services:
-  services:
-    shop:
-      build:
-        context: .
-        dockerfile: ./docker-build/shop/Dockerfile
-      environment:
-        CONFIG: ProductionConfig
-        SQLALCHEMY_DATABASE_URI: postgresql+pg8000://shop:shop@pg:5432/shop
-      ports:
-        - "8000:80"
-      depends_on:
-        pg:
-          condition: service_healthy
+  shop:
+    build:
+      context: .
+      dockerfile: ./docker-build/shop/Dockerfile
+    environment:
+      CONFIG: ProductionConfig
+      SQLALCHEMY_DATABASE_URI: postgresql+pg8000://shop:shop@pg:5432/shop
+    ports:
+      - "8000:80"
+    depends_on:
+      pg:
+        condition: service_healthy
   pg:
     image: postgres
     environment:
