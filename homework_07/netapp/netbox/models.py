@@ -1,15 +1,16 @@
 from django.db import models
 
 
+class Vendor(models.Model):
+    manufactured = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.manufactured
+
+
 class CommonData(models.Model):
-    vendors = (
-        ("Arista", "Arista"),
-        ("Cisco", "Cisco"),
-        ("Mellanox", "Mellanox"),
-        ("Juniper", "Juniper"),
-    )
-    name = models.CharField(max_length=10, null=False, default='-')
-    manufactured = models.CharField(max_length=20, choices=vendors)
+    name = models.CharField(max_length=10, null=False, default="-")
+    manufactured = models.ForeignKey(Vendor, on_delete=models.PROTECT, null=True)
     model_name = models.CharField(max_length=20)
     serial_number = models.CharField(max_length=20)
     description = models.TextField(max_length=100, blank=True)

@@ -9,7 +9,6 @@
         <ul>
             <b>Switches:</b>
             <br>
-            <br>
             {% for item in switch %}
                 <li>
                     <a href="{% url 'netbox:details' item.id %}">{{item.name}}</a>
@@ -18,7 +17,6 @@
             <br>
             <br>
             <b>Routers:</b>
-            <br>
             <br>
             {% for item in router %}
                 <li>
