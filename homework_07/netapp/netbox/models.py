@@ -16,7 +16,7 @@ class CommonData(models.Model):
     description = models.TextField(max_length=100, blank=True)
 
     def __str__(self):
-        return self.model_name
+        return self.name
 
 
 class Switch(CommonData):
