@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, Http404
 from django.http import HttpRequest
 
 from .models import (
@@ -21,7 +21,7 @@ def index(requset: HttpRequest):
 def details(requset: HttpRequest, pk: int):
     try:
         items = get_object_or_404(Switch.objects.select_related("manufactured"), pk=pk)
-    except:
+    except Http404:
         items = get_object_or_404(Router.objects.select_related("manufactured"), pk=pk)
     context = {
         "item": items,
