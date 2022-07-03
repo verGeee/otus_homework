@@ -9,7 +9,7 @@ from .models import (
 
 def index(requset: HttpRequest):
     switches = Switch.objects.select_related("manufactured").order_by("name").all()
-    routers = Router.objects.order_by("name").all()
+    routers = Router.objects.select_related("manufactured").order_by("name").all()
     context = {
         "switch": switches,
         "router": routers,
