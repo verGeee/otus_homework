@@ -9,11 +9,7 @@
     <div>
         <p>Vendor: {{ item.manufactured }}</p>
         <p>SN: {{ item.serial_number }}</p>
-        {% if item.dev_type == 'Router' %}
-            <p>Prefix count: {{ item.prefix_count }}</p>
-        {% elif item.dev_type == 'Switch' %}
-            <p>Port count: {{ item.port_count }}</p>
-        {% endif %}
+        <p>Type: {{ item.dev_type }}</p>
         <p>Description: {{ item.description }}</p>
     </div>
 {% endblock %}

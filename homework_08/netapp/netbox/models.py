@@ -8,8 +8,13 @@ class Vendor(models.Model):
         return self.manufactured
 
 
-class CommonData(models.Model):
-    name = models.CharField(max_length=10, null=False, default="-")
+class Device(models.Model):
+    dev_types = [
+        ("Router", "Router"),
+        ("Switch", "Switch"),
+    ]
+    name = models.CharField(max_length=10, null=False)
+    dev_type = models.CharField(max_length=30, choices=dev_types)
     manufactured = models.ForeignKey(Vendor, on_delete=models.PROTECT, null=True)
     model_name = models.CharField(max_length=20)
     serial_number = models.CharField(max_length=20)
@@ -17,13 +22,3 @@ class CommonData(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Switch(CommonData):
-    dev_type = "Switch"
-    port_count = models.IntegerField(default="0")
-
-
-class Router(CommonData):
-    dev_type = "Router"
-    prefix_count = models.IntegerField(default="0")

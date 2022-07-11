@@ -3,11 +3,12 @@ from django.urls import path
 from .views import (
     index,
     details,
+    DeviceListView,
 )
 
 app_name = "netbox"
 
 urlpatterns = [
-    path("", index, name="list"),
+    path("", DeviceListView.as_view(), name="list"),
     path("<int:pk>/", details, name="details"),
 ]
