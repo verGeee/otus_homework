@@ -1,0 +1,28 @@
+{% extends 'netbox/base.html' %}
+
+{% block title %}
+    Netbox
+{% endblock %}
+
+{% block body %}
+    <div>
+        <ul>
+            <b>Switches:</b>
+            <br>
+            {% for item in switch %}
+                <li>
+                    <a href="{% url 'netbox:details' item.id %}">{{item.name}}</a>
+                </li>
+            {% endfor %}
+            <br>
+            <br>
+            <b>Routers:</b>
+            <br>
+            {% for item in router %}
+                <li>
+                    <a href="{% url 'netbox:details' item.id %}">{{item.name}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

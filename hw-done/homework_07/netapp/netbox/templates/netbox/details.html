@@ -1,0 +1,25 @@
+{% extends 'netbox/base.html' %}
+
+{% block title %}
+    {{ item.name }}
+{% endblock %}
+
+{% block body %}
+    <h3>Hostname {{ item.name }}</h3>
+    <div>
+        <p>Vendor: {{ item.manufactured }}</p>
+        <p>SN: {{ item.serial_number }}</p>
+        {% if item.dev_type == 'Router' %}
+            <p>Prefix count: {{ item.prefix_count }}</p>
+        {% elif item.dev_type == 'Switch' %}
+            <p>Port count: {{ item.port_count }}</p>
+        {% endif %}
+        <p>Description: {{ item.description }}</p>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div>
+        <a href="{% url 'netbox:list' %}">Back to the list</a>
+    </div>
+{% endblock %}
