@@ -30,5 +30,5 @@ def details(requset: HttpRequest, pk: int):
 
 
 class DeviceListView(ListView):
-    queryset = Device.objects.select_related("manufactured")
+    queryset = Device.objects.select_related("manufactured").order_by("name")
     context_object_name = "items"

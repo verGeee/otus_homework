@@ -7,9 +7,10 @@
 {% block body %}
     <h3>Hostname {{ item.name }}</h3>
     <div>
-        <p>Vendor: {{ item.manufactured }}</p>
-        <p>SN: {{ item.serial_number }}</p>
+        <p>Site: {{ item.site }}</p>
         <p>Type: {{ item.dev_type }}</p>
+        <p>Vendor: {{ item.manufactured }} {{ item.model_name }}</p>
+        <p>SN: {{ item.serial_number }}</p>
         <p>Description: {{ item.description }}</p>
     </div>
 {% endblock %}
