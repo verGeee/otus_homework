@@ -1,7 +1,7 @@
 {% extends 'netbox/base.html' %}
 
 {% block title %}
-    Site List
+
 {% endblock %}
 
 {% block body %}
@@ -16,8 +16,13 @@
         </ul>
     </div>
 {% endblock %}
+
 {% block footer %}
     <div>
-        <a href="/netbox/site/">Site list</a>
+        <a href="{% url 'netbox:list' %}">Back to the device list</a>
+    </div>
+    <br>
+    <div>
+        <a href="{% url 'netbox:site_list' %}">Back to the site list</a>
     </div>
 {% endblock %}

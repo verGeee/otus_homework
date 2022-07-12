@@ -5,16 +5,5 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-        <ul>
-            <b>Devices:</b>
-            <br>
-            <br>
-            {% for item in items %}
-                <li>
-                    <a href="{% url 'netbox:details' item.id %}">{{item.name}}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+
 {% endblock %}
