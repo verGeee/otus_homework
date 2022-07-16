@@ -4,6 +4,7 @@ from django.shortcuts import (
 
 from django.urls import (
     reverse_lazy,
+    reverse,
 )
 
 from django.views.generic import (
@@ -11,6 +12,7 @@ from django.views.generic import (
     DetailView,
     DeleteView,
     CreateView,
+    UpdateView,
 )
 
 from .models import (
@@ -20,6 +22,7 @@ from .models import (
 
 from .forms import (
     SiteCreateForm,
+    SiteUpdateForm,
 )
 
 from .baseparams import (
@@ -55,9 +58,19 @@ class SiteCreateView(BaseParamsView, CreateView):
     template_name = "netbox/site/site_create.html"
 
     def get_success_url(self):
-        return reverse_lazy("netbox:site_list")
+        return reverse("netbox:site_details", kwargs={"pk": self.object.pk})
 
     form_class = SiteCreateForm
+
+
+class SiteUpdateView(BaseParamsView, UpdateView):
+    model = Site
+    template_name = "netbox/site/site_update.html"
+
+    def get_success_url(self):
+        return reverse("netbox:site_details", kwargs={"pk": self.object.pk})
+
+    form_class = SiteUpdateForm
 
 
 class SiteDeleteView(BaseParamsView, DeleteView):

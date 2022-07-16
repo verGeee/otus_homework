@@ -16,6 +16,10 @@
 
 {% block footer %}
     <div>
-        <a href="{% url 'netbox:device_delete' items.pk %}">Delete the device</a>
+        <a class="btn btn-primary" href="{% url 'netbox:device_update' items.pk %}">Update the device</a>
+    </div>
+    <br>
+    <div>
+        <a class="btn btn-danger" href="{% url 'netbox:device_delete' items.pk %}">Delete the device</a>
     </div>
 {% endblock %}

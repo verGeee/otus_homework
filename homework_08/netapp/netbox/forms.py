@@ -27,7 +27,31 @@ class DeviceCreateForm(BaseParamsForm, ModelForm):
         )
 
 
+class DeviceUpdateForm(BaseParamsForm, ModelForm):
+    class Meta:
+        model = Device
+        fields = (
+            "site",
+            "name",
+            "manufactured",
+            "dev_type",
+            "model_name",
+            "serial_number",
+            "description",
+        )
+
+
 class SiteCreateForm(BaseParamsForm, ModelForm):
+    class Meta:
+        model = Site
+        fields = (
+            "site",
+            "full_name",
+            "address",
+        )
+
+
+class SiteUpdateForm(BaseParamsForm, ModelForm):
     class Meta:
         model = Site
         fields = (

@@ -8,6 +8,7 @@ from django.views.generic import (
     DetailView,
     DeleteView,
     CreateView,
+    UpdateView,
 )
 
 from .models import (
@@ -16,6 +17,7 @@ from .models import (
 
 from .forms import (
     DeviceCreateForm,
+    DeviceUpdateForm,
 )
 
 from .baseparams import (
@@ -41,6 +43,16 @@ class DeviceCreateView(CreateView):
         return reverse("netbox:device_details", kwargs={"pk": self.object.pk})
 
     form_class = DeviceCreateForm
+
+
+class DeviceUpdateView(BaseParamsView, UpdateView):
+    model = Device
+    template_name = "netbox/device/device_update.html"
+
+    def get_success_url(self):
+        return reverse("netbox:device_details", kwargs={"pk": self.object.pk})
+
+    form_class = DeviceUpdateForm
 
 
 class DeviceDeleteView(BaseParamsView, DeleteView):

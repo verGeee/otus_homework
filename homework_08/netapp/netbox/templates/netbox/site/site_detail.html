@@ -10,13 +10,17 @@
         <p>Address: {{ items.address }}</p>
     </div>
     <div>
-        <a href="{% url 'netbox:site_dev_list' items.pk%}">Devices</a>
+        <a class="btn btn-secondary" href="{% url 'netbox:site_dev_list' items.pk%}">Devices</a>
     </div>
     <br>
 {% endblock %}
 
 {% block footer %}
     <div>
-        <a href="{% url 'netbox:site_delete' items.pk %}">Delete the site</a>
+        <a class="btn btn-primary" href="{% url 'netbox:site_update' items.pk %}">Update the site</a>
+    </div>
+    <br>
+    <div>
+        <a class="btn btn-danger" href="{% url 'netbox:site_delete' items.pk %}">Delete the site</a>
     </div>
 {% endblock %}
