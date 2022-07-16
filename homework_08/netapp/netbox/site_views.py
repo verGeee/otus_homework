@@ -4,7 +4,6 @@ from django.shortcuts import (
 
 from django.urls import (
     reverse_lazy,
-    reverse,
 )
 
 from django.views.generic import (
@@ -23,22 +22,22 @@ from .forms import (
     SiteCreateForm,
 )
 
+from .baseparams import (
+    BaseParamsView,
+)
 
-class BaseParams:
-    context_object_name = "items"
 
-
-class SiteListView(BaseParams, ListView):
+class SiteListView(BaseParamsView, ListView):
     queryset = Site.objects.order_by("site")
     template_name = "netbox/site/site_list.html"
 
 
-class SiteDetailView(BaseParams, DetailView):
+class SiteDetailView(BaseParamsView, DetailView):
     queryset = Site.objects
     template_name = "netbox/site/site_detail.html"
 
 
-class SiteDevListView(BaseParams, ListView):
+class SiteDevListView(BaseParamsView, ListView):
     queryset = Device.objects
     template_name = "netbox/site/site_dev_list.html"
 
@@ -51,7 +50,7 @@ class SiteDevListView(BaseParams, ListView):
         return qs.filter(site__id=site.id)
 
 
-class SiteCreateView(BaseParams, CreateView):
+class SiteCreateView(BaseParamsView, CreateView):
     model = Site
     template_name = "netbox/site/site_create.html"
 
@@ -61,7 +60,7 @@ class SiteCreateView(BaseParams, CreateView):
     form_class = SiteCreateForm
 
 
-class SiteDeleteView(BaseParams, DeleteView):
+class SiteDeleteView(BaseParamsView, DeleteView):
     model = Site
     success_url = reverse_lazy("netbox:site_list")
     template_name = "netbox/site/site_delete.html"

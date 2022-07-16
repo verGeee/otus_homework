@@ -2,13 +2,18 @@ from django.forms import (
     ModelForm,
 )
 
+
 from .models import (
     Device,
     Site,
 )
 
+from .baseparams import (
+    BaseParamsForm,
+)
 
-class DeviceCreateForm(ModelForm):
+
+class DeviceCreateForm(BaseParamsForm, ModelForm):
     class Meta:
         model = Device
         fields = (
@@ -22,7 +27,7 @@ class DeviceCreateForm(ModelForm):
         )
 
 
-class SiteCreateForm(ModelForm):
+class SiteCreateForm(BaseParamsForm, ModelForm):
     class Meta:
         model = Site
         fields = (

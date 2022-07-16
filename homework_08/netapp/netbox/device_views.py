@@ -18,17 +18,17 @@ from .forms import (
     DeviceCreateForm,
 )
 
+from .baseparams import (
+    BaseParamsView,
+)
 
-class BaseParams:
-    context_object_name = "items"
 
-
-class DeviceListView(BaseParams, ListView):
+class DeviceListView(BaseParamsView, ListView):
     queryset = Device.objects.select_related("manufactured").order_by("name")
     template_name = "netbox/device/device_list.html"
 
 
-class DeviceDetailView(BaseParams, DetailView):
+class DeviceDetailView(BaseParamsView, DetailView):
     queryset = Device.objects.select_related("site", "manufactured", "dev_type")
     template_name = "netbox/device/device_detail.html"
 
@@ -43,7 +43,7 @@ class DeviceCreateView(CreateView):
     form_class = DeviceCreateForm
 
 
-class DeviceDeleteView(BaseParams, DeleteView):
+class DeviceDeleteView(BaseParamsView, DeleteView):
     model = Device
     success_url = reverse_lazy("netbox:device_list")
     template_name = "netbox/device/device_delete.html"
