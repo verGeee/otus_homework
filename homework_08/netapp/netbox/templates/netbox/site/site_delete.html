@@ -8,8 +8,7 @@
     <h3>Delete site {{ items.site }}?</h3>
     <form method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Delete">
+        <input type="submit" class="btn btn-danger" value="Delete">
     </form>
     <br>
 {% endblock %}
