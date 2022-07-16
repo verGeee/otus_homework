@@ -13,13 +13,13 @@ class BaseParamsForm:
                 field.widget.attrs.update(
                     {
                         "class": "form-select",
-                        "style": "width: 400px",
+                        "style": "width: 15%",
                     }
                 )
             else:
                 field.widget.attrs.update(
                     {
                         "class": "form-control",
-                        "style": "width: 400px",
+                        "style": "width: 15%",
                     }
                 )

@@ -5,15 +5,12 @@
 {% endblock %}
 
 {% block body %}
-    <div>
+    <div class="list-group">
     <b>Sites:</b>
-        <ul>
-            {% for item in items %}
-                <li>
-                    <a href="{% url 'netbox:site_details' item.pk %}">{{item.site}}</a>
-                </li>
-            {% endfor %}
-        </ul>
+    {% for item in items %}
+        <a href="{% url 'netbox:site_details' item.pk %}"
+           class="list-group-item list-group-item-action" style="width: 15%">{{item.site}}</a>
+    {% endfor %}
     </div>
 {% endblock %}
 

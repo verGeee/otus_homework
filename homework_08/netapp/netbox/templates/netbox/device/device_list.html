@@ -5,19 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <div>
+    <div class="list-group">
     <b>Devices:</b>
-        <ul>
-            {% for item in items %}
-                <li>
-                    <a href="{% url 'netbox:device_details' item.id %}">{{item.name}}</a>
-                </li>
-            {% endfor %}
-        </ul>
+        {% for item in items %}
+            <a href="{% url 'netbox:device_details' item.id %}"
+               class="list-group-item list-group-item-action" style="width: 15%">{{item.name}}</a>
+        {% endfor %}
     </div>
 {% endblock %}
 {% block footer %}
-    <div>
-        <a class="btn btn-secondary" href="{% url 'netbox:site_list' %}">Site list</a>
-    </div>
 {% endblock %}
