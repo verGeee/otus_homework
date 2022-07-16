@@ -1,24 +1,23 @@
 {% extends 'netbox/base.html' %}
 
 {% block title %}
-    Netbox
+    Device List
 {% endblock %}
 
 {% block body %}
     <div>
-    <b>Sites:</b>
+    <b>Devices:</b>
         <ul>
             {% for item in items %}
                 <li>
-                    <a href="{% url 'netbox:site' item.site %}">{{item.site}}</a>
+                    <a href="{% url 'netbox:device_details' item.id %}">{{item.name}}</a>
                 </li>
             {% endfor %}
         </ul>
     </div>
 {% endblock %}
-
 {% block footer %}
     <div>
-        <a href="{% url 'netbox:list' %}">Back to the device list</a>
+        <a href="{% url 'netbox:site_list' %}">Site list</a>
     </div>
 {% endblock %}

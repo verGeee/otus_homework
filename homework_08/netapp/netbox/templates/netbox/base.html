@@ -10,14 +10,28 @@
         </title>
     </head>
 <body>
+    <br>
+    <div>
+        <a href="{% url 'netbox:device_create' %}">Create Device</a>
+    </div>
+    <br>
+    <div>
+        <a href="{% url 'netbox:site_create' %}">Create Site</a>
+    </div>
+    <br>
+    <br>
     {% block body %}
         Base body
     {% endblock %}
     </body>
 
     <footer>
+    <hr>
     {% block footer %}
-
     {% endblock %}
+    <br>
+    <div>
+        <a href="{% url 'netbox:device_list' %}">Back to the list</a>
+    </div>
     </footer>
 </html>

@@ -1,0 +1,22 @@
+{% extends 'netbox/base.html' %}
+
+{% block title %}
+    {{ items.full_name }}
+{% endblock %}
+{% block body %}
+    <h3>Site {{ items.site }}</h3>
+    <div>
+        <p>Full name: {{ items.full_name }}</p>
+        <p>Address: {{ items.address }}</p>
+    </div>
+    <div>
+        <a href="{% url 'netbox:site_dev_list' items.pk%}">Devices</a>
+    </div>
+    <br>
+{% endblock %}
+
+{% block footer %}
+    <div>
+        <a href="{% url 'netbox:site_delete' items.pk %}">Delete the site</a>
+    </div>
+{% endblock %}
